@@ -1,13 +1,20 @@
 // Criação do Elemento Square que irá compor o tabuleiro
 import './App.css';
 
-// Square separado
 
+
+// Square separado
 function Square({valor}){ // Square recebe um valor
+  function handleClick(){ // Manipula o botão
+    console.log("Botão Clicado!!");
+  }
   return(
-    <button className="square">{valor}</button>
+    <button className="square" onClick={handleClick}>
+              {valor}
+    </button>
   );
 }
+
 
 
 // Criando botões
