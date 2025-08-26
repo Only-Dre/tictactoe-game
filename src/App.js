@@ -1,12 +1,16 @@
 // Criação do Elemento Square que irá compor o tabuleiro
 import './App.css';
+import { useState } from 'react'; // Importando States para gravar
 
 
 
-// Square separado
-function Square({valor}){ // Square recebe um valor
+// Square separado e tratando eventos
+function Square(){ // Square não possui valor direto na function agora
+  const [valor, setValor] = useState(null); // Settando uma função para a variável Valor
+
   function handleClick(){ // Manipula o botão
-    console.log("Botão Clicado!!");
+    // Setta o botão clicado como X
+    setValor('X');
   }
   return(
     <button className="square" onClick={handleClick}>
@@ -16,26 +20,25 @@ function Square({valor}){ // Square recebe um valor
 }
 
 
-
 // Criando botões
 export default function Tabuleiro(){
   // Componente possui function e return
   return(// Padronizando Square como um botão
     <div> {/* Criando GRIDS por Div para o jogo da velha */}
       <div>
-        <Square valor="1"/>
-        <Square valor="2"/>
-        <Square valor="3"/>
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div>
-        <Square valor="4"/>
-        <Square valor="5"/>
-        <Square valor="6"/>
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div>
-        <Square valor="7"/>
-        <Square valor="8"/>
-        <Square valor="9"/>
+        <Square />
+        <Square />
+        <Square />
       </div>
     </div>
   )
