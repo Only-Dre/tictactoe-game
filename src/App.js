@@ -3,17 +3,11 @@ import './App.css';
 import { useState } from 'react'; // Importando States para gravar
 
 
-
 // Square separado e tratando eventos
-function Square(){ // Square não possui valor direto na function agora
-  const [valor, setValor] = useState(null); // Settando uma função para a variável Valor
-
-  function handleClick(){ // Manipula o botão
-    // Setta o botão clicado como X
-    setValor('X');
-  }
+function Square({valor, onSquareClick}){ // Square volta a ter propriedades, agora DUAS
+  // Função de Evento do Tabuleiro
   return(
-    <button className="square" onClick={handleClick}>
+    <button className="square" onClick={onSquareClick}> {/* Mostra o valor passado */}
               {valor}
     </button>
   );
