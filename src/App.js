@@ -1,25 +1,34 @@
 // Criação do Elemento Square que irá compor o tabuleiro
 import './App.css';
 
+// Square separado
+
+function Square({valor}){ // Square recebe um valor
+  return(
+    <button className="square">{valor}</button>
+  );
+}
+
+
 // Criando botões
-export default function Square(){
+export default function Tabuleiro(){
   // Componente possui function e return
-  return(// Padrão square no botão - Utiliza-se DIV pois "return" não pode ter mais de um item
-    <div>
+  return(// Padronizando Square como um botão
+    <div> {/* Criando GRIDS por Div para o jogo da velha */}
       <div>
-        <button classname="square">1</button>
-        <button classname="square">2</button>
-        <button classname="square">3</button>
+        <Square valor="1"/>
+        <Square valor="2"/>
+        <Square valor="3"/>
       </div>
       <div>
-        <button classname="square">4</button>
-        <button classname="square">5</button>
-        <button classname="square">6</button>
+        <Square valor="4"/>
+        <Square valor="5"/>
+        <Square valor="6"/>
       </div>
       <div>
-        <button classname="square">7</button>
-        <button classname="square">8</button>
-        <button classname="square">9</button>
+        <Square valor="7"/>
+        <Square valor="8"/>
+        <Square valor="9"/>
       </div>
     </div>
   )
