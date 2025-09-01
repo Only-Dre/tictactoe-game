@@ -16,14 +16,21 @@ function Square({valor, onSquareClick}){ // Square volta a ter propriedades, ago
 
 // Criando botões
 export default function Tabuleiro(){
-  // Criação de 9 espaços com Array
+  // Variável de Estado do Tabuleiro
   const [squares, setSquares] = useState(Array(9).fill(null)); // Preenchimento de Array
-  
+  // Variável secndária
+  const [xIsNext, setXIsNext] = useState(true);
   function handleClick(i){ // i = índice
-    const nextSquares = squares.slice(); // Irá guardar em "nextSquares" uma cópia do Array
-    // Acessando índice
-    nextSquares[i] = "X"
-    setSquares(nextSquares); // Guarda a mudança
+    if(squares[i]) // Se Square[i] é Null, o if NÃO executa o return
+      return;
+    // Handle Click continua pois o RETURN não foi executado
+    const nextSquares = squares.slice(); // Guarda em "nextSquares" uma cópia da String e atribui um valor x
+    if(xIsNext)
+    {nextSquares[i] = "X";}
+    else
+    {nextSquares[i] = "O";}
+    setSquares(nextSquares);
+    setXIsNext(!xIsNext);
   }
 
   // Componente possui function e return
