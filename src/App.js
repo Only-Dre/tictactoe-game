@@ -16,15 +16,19 @@ function Square({valor, onSquareClick}){ // Square volta a ter propriedades, ago
 
 // Criando botões
 export default function Tabuleiro(){
+  
   // Variável de Estado do Tabuleiro
   const [squares, setSquares] = useState(Array(9).fill(null)); // Preenchimento de Array
-  // Variável secndária
+  
+  // Variável secundária
   const [xIsNext, setXIsNext] = useState(true);
+
   function handleClick(i){ // i = índice
-    if(squares[i]) // Se Square[i] é Null, o if NÃO executa o return
-      return;
+    if(squares[i] || existeVencedor(squares)) // "||" = Condição de "OU";
+    { return };
+    
     // Handle Click continua pois o RETURN não foi executado
-    const nextSquares = squares.slice(); // Guarda em "nextSquares" uma cópia da String e atribui um valor x
+    const nextSquares = squares.slice(); // Guarda em "nextSquares" uma cópia da String e atribui um valor
     if(xIsNext)
     {nextSquares[i] = "X";}
     else
@@ -33,9 +37,23 @@ export default function Tabuleiro(){
     setXIsNext(!xIsNext);
   }
 
+  // Variável para armazenar o vencedor
+  const vencedor = existeVencedor(squares);
+
+  // Variável para status do jogo (vencedor, empate ou próximo jogador)
+  let status;
+  if (vencedor) {
+    status = "Vencedor: " + vencedor;
+  } else if (!squares.includes(null)) { // Se não existe mais "null", significa empate
+    status = "Empate!";
+  } else {
+    status = "Próximo: " + (xIsNext ? "X" : "O");
+  }
+
   // Componente possui function e return
   return(// Padronizando Square como um botão
     <div> {/* Criando GRIDS por Div para o jogo da velha */}
+      <div className="status">{status}</div> {/* Mostra o status do jogo */}
       <div> {/* Números de Array em squares */}
         <Square valor={squares[0]} onSquareClick={() => {handleClick(0)}}/>
         <Square valor={squares[1]} onSquareClick={() => {handleClick(1)}} />
@@ -53,4 +71,31 @@ export default function Tabuleiro(){
       </div>
     </div>
   )
+}
+
+
+// Função para apresentar o Vencedor:
+function existeVencedor(squares)
+{
+  // Combinações vencedoras (linhas, colunas e diagonais)
+  const linhas = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  // Verifica cada linha vencedora
+  for (let [a, b, c] of linhas) {
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a]; // Retorna "X" ou "O"
+    }
+  }
+
+  // Se não encontrou vencedor, retorna null
+  return null;
 }
