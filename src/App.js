@@ -40,7 +40,7 @@ export default function Tabuleiro(){
   // Variável para armazenar o vencedor
   const vencedor = existeVencedor(squares);
 
-  // Variável para status do jogo (vencedor, empate ou próximo jogador)
+  // Variável para status do jogo (vencedor, empate ou próximo movimento)
   let status;
   if (vencedor) {
     status = "Vencedor: " + vencedor;
