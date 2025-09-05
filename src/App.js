@@ -1,12 +1,17 @@
 // Criação do Elemento Square que irá compor o tabuleiro
-import './App.css';
-import { useState } from 'react'; // Importando States para gravar
+import './App.css'; // Importando CSS
+import { useState } from 'react'; // Importando States para gravação
 
 
 // Square separado e tratando eventos
 function Square({valor, onSquareClick}){ // Square volta a ter propriedades, agora DUAS
+  
   // Função de Evento do Tabuleiro
   return(
+    
+    /* Nome da Classe - square
+    Ao Click - Apresenta valor */
+
     <button className="square" onClick={onSquareClick}> {/* Mostra o valor passado */}
               {valor}
     </button>
@@ -15,20 +20,40 @@ function Square({valor, onSquareClick}){ // Square volta a ter propriedades, ago
 
 
 // Criando botões
+// Exportando Função Padrão - Tabuleiro
 export default function Tabuleiro(){
   
   // Variável de Estado do Tabuleiro
+
+  /* Const - Variável Constante
+     Variáveis - squares e setSquares
+     Const também é considerado um "Array
+     useState retorna Arrays de DOIS elementos"
+     
+     exemplo:  
+     
+     const [stateVariable, setStateVariable] = useState(initialValue);
+     stateVariable - É o nome da Variável
+     setStateVariable - É a função que atualiza a anterior (setStateVariable)
+     initualValue - O valor inical que gostaríamos de indereçar à variável de estado (poder ser número, string, booleano
+     */
+
   const [squares, setSquares] = useState(Array(9).fill(null)); // Preenchimento de Array
   
   // Variável secundária
+  // Retorno de um valor de estado e uma Função para atualizar 
+
   const [xIsNext, setXIsNext] = useState(true);
 
+  /* SE squares = índice [i] OU se existir um Vencedor
+     retorna */
   function handleClick(i){ // i = índice
     if(squares[i] || existeVencedor(squares)) // "||" = Condição de "OU";
     { return };
     
     // Handle Click continua pois o RETURN não foi executado
-    const nextSquares = squares.slice(); // Guarda em "nextSquares" uma cópia da String e atribui um valor
+    const nextSquares = squares.slice(); 
+    // Guarda em "nextSquares" uma cópia da String e atribui um valor ("X" ou "O")
     if(xIsNext)
     {nextSquares[i] = "X";}
     else
