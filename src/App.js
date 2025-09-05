@@ -115,7 +115,18 @@ function existeVencedor(squares)
   ];
 
   // Verifica cada linha vencedora
+  // Let não irá permitir que o Array [a, b, c] seja redeclarado, mantendo a ordem da lista.
   for (let [a, b, c] of linhas) {
+
+    /* Primeiro squares a -> Serve para verificar se existe algum valor em a (Se for "null" ou "undefined", o "if" falha e o código quebra)
+       squares a === b -> Verifica se os valores são iguais 
+       squares a === c -> Verifica se ambos também são iguais
+       
+       SE FOR VERDADEIRO
+
+       o return squares[a] devolve um símbolo (X ou O)
+
+       */
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a]; // Retorna "X" ou "O"
     }
