@@ -63,6 +63,12 @@ export default function Tabuleiro(){
   }
 
   // Variável para armazenar o vencedor
+  /* Função existeVencedor chama o Array squares
+     Retorna X ou O
+     let status guarda a frase que vai ser apresentada na tela do player
+     SE houver vencedor (ou seja, não null), retorna mensagem -> "Vencedor" + resultado/símbolo-chave
+     SE não houver vencedor, resulta em null, o Array foi preenchido então marcará empate
+    */
   const vencedor = existeVencedor(squares);
 
   // Variável para status do jogo (vencedor, empate ou próximo movimento)
@@ -103,6 +109,7 @@ export default function Tabuleiro(){
 function existeVencedor(squares)
 {
   // Combinações vencedoras (linhas, colunas e diagonais)
+  // Variáveis Constantes - "linhas"
   const linhas = [
     [0, 1, 2],
     [3, 4, 5],
